@@ -1,467 +1,204 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-  <meta charset="UTF-8" />
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
-  />
-  <title>CNCShop - Cartão Digital</title>
-  <meta
-    name="description"
-    content="Cartão digital da CNCShop - Especialista em peças para CNC."
-  />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>CNCShop - Cartão Digital</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --vermelho: #e31e24;
+            --preto-fosco: #1a1a1a;
+            --bg-card: #ffffff;
+        }
 
-  <link
-    rel="preconnect"
-    href="https://cdnjs.cloudflare.com"
-  />
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-  />
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, sans-serif;
+        }
 
-  <style>
-    :root {
-      --cor-primaria: #e31e24;
-      --cor-primaria-escura: #b8161b;
-      --cor-preta: #141414;
-      --cor-preta-secundaria: #1d1d1d;
-      --cor-fundo: #f3f4f6;
-      --cor-card: rgba(255, 255, 255, 0.96);
-      --cor-texto: #222;
-      --cor-texto-suave: #6b7280;
-      --cor-borda: rgba(255, 255, 255, 0.35);
-      --cor-sombra: rgba(0, 0, 0, 0.18);
+        body {
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+            padding: 20px 0;
+        }
 
-      --radius-xl: 28px;
-      --radius-lg: 20px;
-      --radius-md: 16px;
-      --radius-pill: 999px;
+        /* --- MOSAICO GIGANTE (70% TRANSPARÊNCIA) --- */
+        body::before {
+            content: "";
+            position: fixed;
+            top: -150%; 
+            left: -150%;
+            width: 400%;
+            height: 400%;
+            background-image: url('logo.png'); /* NOME CORRIGIDO PARA MINÚSCULO */
+            background-repeat: repeat;
+            background-size: 420px;
+            z-index: -1;
+            transform: rotate(-25deg);
+            opacity: 0.3; 
+            pointer-events: none;
+        }
 
-      --shadow-card: 0 20px 50px rgba(0, 0, 0, 0.16);
-      --shadow-btn: 0 10px 25px rgba(0, 0, 0, 0.18);
-      --shadow-btn-hover: 0 16px 32px rgba(0, 0, 0, 0.22);
+        .card-container {
+            width: 92%;
+            max-width: 450px;
+            background-color: var(--bg-card);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+            border-radius: 25px;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
 
-      --max-width-card: 460px;
-      --transition: 0.25s ease;
-    }
+        .header-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.2)), 
+                        url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=1000');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            padding-top: 40px;
+            clip-path: polygon(0 0, 100% 0, 100% 80%, 0% 100%);
+        }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+        .header-image h2 {
+            color: white;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            text-align: center;
+            letter-spacing: 1.5px;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
+        }
 
-    html {
-      scroll-behavior: smooth;
-    }
+        /* --- LOGO PRINCIPAL REBAIXADO --- */
+        .logo-area {
+            margin-top: -60px; 
+            padding: 0 10%;
+            z-index: 10;
+        }
 
-    body {
-      min-height: 100vh;
-      font-family: "Segoe UI", Roboto, Arial, sans-serif;
-      background:
-        radial-gradient(circle at top, rgba(227, 30, 36, 0.06), transparent 35%),
-        var(--cor-fundo);
-      color: var(--cor-texto);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 24px 14px;
-      position: relative;
-      overflow-x: hidden;
-    }
+        .logo-area img {
+            width: 100%;
+            height: auto;
+            background: white;
+            padding: 15px;
+            border-radius: 18px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
 
-    /* Fundo com mosaico da logo */
-    body::before {
-      content: "";
-      position: fixed;
-      inset: -120%;
-      background-image: url("Logo.png");
-      background-repeat: repeat;
-      background-size: 320px;
-      transform: rotate(-24deg);
-      opacity: 0.06;
-      pointer-events: none;
-      z-index: 0;
-    }
+        .instruction {
+            font-size: 0.75rem;
+            color: #888;
+            margin: 20px 0 15px;
+            font-weight: 700;
+            text-transform: uppercase;
+            text-align: center;
+        }
 
-    .card-container {
-      width: 100%;
-      max-width: var(--max-width-card);
-      background: var(--cor-card);
-      backdrop-filter: blur(8px);
-      border: 1px solid var(--cor-borda);
-      border-radius: var(--radius-xl);
-      overflow: hidden;
-      box-shadow: var(--shadow-card);
-      position: relative;
-      z-index: 1;
-    }
+        .links-container {
+            padding: 0 8% 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
 
-    .header-image {
-      position: relative;
-      min-height: 230px;
-      padding: 32px 24px 90px;
-      display: flex;
-      align-items: flex-start;
-      justify-content: center;
-      text-align: center;
-      background:
-        linear-gradient(to bottom, rgba(0, 0, 0, 0.62), rgba(0, 0, 0, 0.25)),
-        url("https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=1200")
-        center/cover no-repeat;
-    }
+        .btn {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: var(--preto-fosco);
+            color: white;
+            text-decoration: none;
+            padding: 16px 20px;
+            border-radius: 50px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
 
-    .header-image::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: -1px;
-      height: 70px;
-      background: var(--cor-card);
-      clip-path: ellipse(70% 100% at 50% 100%);
-    }
+        .btn i { font-size: 1.5rem; margin-right: 15px; min-width: 30px; text-align: center; }
+        .fa-whatsapp { color: #25D366; }
+        .fa-phone { color: #3498db; }
+        .fa-globe { color: var(--vermelho); }
+        .fa-location-dot { color: #f1c40f; }
+        .fa-envelope { color: #ffffff; }
 
-    .header-content {
-      position: relative;
-      z-index: 1;
-      max-width: 300px;
-    }
-
-    .badge {
-      display: inline-block;
-      margin-bottom: 12px;
-      padding: 8px 14px;
-      background: rgba(255, 255, 255, 0.16);
-      border: 1px solid rgba(255, 255, 255, 0.24);
-      border-radius: var(--radius-pill);
-      color: #fff;
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      backdrop-filter: blur(6px);
-    }
-
-    .header-image h1 {
-      color: #fff;
-      font-size: 1.35rem;
-      line-height: 1.35;
-      font-weight: 800;
-      letter-spacing: 0.03em;
-      text-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
-    }
-
-    .logo-area {
-      position: relative;
-      z-index: 2;
-      margin-top: -62px;
-      padding: 0 34px;
-    }
-
-    .logo-box {
-      background: #fff;
-      border-radius: 22px;
-      padding: 16px;
-      box-shadow: 0 14px 34px rgba(0, 0, 0, 0.12);
-      border: 1px solid rgba(0, 0, 0, 0.04);
-    }
-
-    .logo-box img {
-      display: block;
-      width: 100%;
-      max-height: 110px;
-      object-fit: contain;
-    }
-
-    .content {
-      padding: 22px 24px 28px;
-    }
-
-    .instruction {
-      text-align: center;
-      font-size: 0.78rem;
-      color: var(--cor-texto-suave);
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      margin-bottom: 18px;
-    }
-
-    .links-container {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .btn {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      width: 100%;
-      text-decoration: none;
-      color: #fff;
-      background: linear-gradient(135deg, var(--cor-preta), var(--cor-preta-secundaria));
-      padding: 16px 18px;
-      border-radius: var(--radius-pill);
-      box-shadow: var(--shadow-btn);
-      transition:
-        transform var(--transition),
-        box-shadow var(--transition),
-        background var(--transition);
-      outline: none;
-      border: 1px solid rgba(255, 255, 255, 0.05);
-    }
-
-    .btn:hover {
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-btn-hover);
-      background: linear-gradient(135deg, #111, #252525);
-    }
-
-    .btn:active {
-      transform: scale(0.985);
-    }
-
-    .btn:focus-visible {
-      box-shadow:
-        0 0 0 3px rgba(227, 30, 36, 0.28),
-        var(--shadow-btn-hover);
-    }
-
-    .btn-content {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      min-width: 0;
-    }
-
-    .btn-icon {
-      width: 46px;
-      height: 46px;
-      border-radius: 50%;
-      display: grid;
-      place-items: center;
-      background: rgba(255, 255, 255, 0.08);
-      flex-shrink: 0;
-    }
-
-    .btn-icon i {
-      font-size: 1.2rem;
-    }
-
-    .btn-text {
-      min-width: 0;
-    }
-
-    .btn-text span {
-      display: block;
-      font-size: 0.72rem;
-      color: rgba(255, 255, 255, 0.72);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin-bottom: 3px;
-    }
-
-    .btn-text strong {
-      display: block;
-      font-size: 0.97rem;
-      line-height: 1.3;
-      word-break: break-word;
-    }
-
-    .btn-arrow {
-      font-size: 0.95rem;
-      color: rgba(255, 255, 255, 0.75);
-      flex-shrink: 0;
-    }
-
-    /* Cores dos ícones */
-    .fa-whatsapp { color: #25d366; }
-    .fa-phone { color: #4aa3ff; }
-    .fa-globe { color: var(--cor-primaria); }
-    .fa-location-dot { color: #f5c542; }
-    .fa-envelope { color: #ffffff; }
-
-    .footer {
-      margin-top: 20px;
-      text-align: center;
-    }
-
-    .footer-text {
-      font-size: 0.78rem;
-      color: var(--cor-texto-suave);
-      line-height: 1.5;
-    }
-
-    .footer-text strong {
-      color: var(--cor-primaria);
-    }
-
-    @media (max-width: 480px) {
-      .header-image {
-        min-height: 210px;
-        padding: 26px 18px 84px;
-      }
-
-      .header-image h1 {
-        font-size: 1.15rem;
-      }
-
-      .logo-area {
-        padding: 0 22px;
-      }
-
-      .content {
-        padding: 20px 18px 24px;
-      }
-
-      .btn {
-        padding: 15px 16px;
-      }
-
-      .btn-text strong {
-        font-size: 0.92rem;
-      }
-    }
-
-    @media (min-width: 768px) {
-      body {
-        padding: 40px 20px;
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      *,
-      *::before,
-      *::after {
-        animation: none !important;
-        transition: none !important;
-        scroll-behavior: auto !important;
-      }
-    }
-  </style>
+        .footer-text {
+            font-size: 0.7rem;
+            color: #aaa;
+            text-align: center;
+            padding-bottom: 20px;
+        }
+    </style>
 </head>
 <body>
-  <main class="card-container" aria-label="Cartão digital CNCShop">
-    <header class="header-image">
-      <div class="header-content">
-        <span class="badge">CNCShop</span>
-        <h1>Especialista em Peças para CNC</h1>
-      </div>
-    </header>
 
-    <section class="logo-area" aria-label="Logo da empresa">
-      <div class="logo-box">
-        <img src="Logo.png" alt="Logo da CNCShop" />
-      </div>
-    </section>
+    <div class="card-container">
+        <header class="header-image">
+            <h2>Especialista em Peças para CNC</h2>
+        </header>
 
-    <section class="content">
-      <p class="instruction">Toque para interagir</p>
+        <section class="logo-area">
+            <img src="logo.png" alt="CNCShop Logo"> </section>
 
-      <nav class="links-container" aria-label="Links de contato">
-        <a
-          href="https://wa.me/551632411144"
-          class="btn"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Fale no WhatsApp"
-        >
-          <div class="btn-content">
-            <div class="btn-icon">
-              <i class="fab fa-whatsapp" aria-hidden="true"></i>
-            </div>
-            <div class="btn-text">
-              <span>Fale no WhatsApp</span>
-              <strong>Vendas WhatsApp</strong>
-            </div>
-          </div>
-          <i class="fas fa-chevron-right btn-arrow" aria-hidden="true"></i>
-        </a>
+        <p class="instruction">Toque para interagir</p>
 
-        <a
-          href="tel:+551632411144"
-          class="btn"
-          aria-label="Ligar para o número 16 3241-1144"
-        >
-          <div class="btn-content">
-            <div class="btn-icon">
-              <i class="fas fa-phone" aria-hidden="true"></i>
-            </div>
-            <div class="btn-text">
-              <span>Ligar agora</span>
-              <strong>(16) 3241-1144</strong>
-            </div>
-          </div>
-          <i class="fas fa-chevron-right btn-arrow" aria-hidden="true"></i>
-        </a>
+        <nav class="links-container">
+            <a href="https://wa.me/551632411144" class="btn">
+                <div style="display:flex; align-items:center;">
+                    <i class="fab fa-whatsapp"></i>
+                    <div style="line-height:1.2">
+                        <span style="font-size:0.6rem; color:#aaa; display:block;">WHATSAPP</span>
+                        <strong>VENDAS</strong>
+                    </div>
+                </div>
+            </a>
 
-        <a
-          href="https://www.cncshop.com.br"
-          class="btn"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Abrir o site da CNCShop"
-        >
-          <div class="btn-content">
-            <div class="btn-icon">
-              <i class="fas fa-globe" aria-hidden="true"></i>
-            </div>
-            <div class="btn-text">
-              <span>Nossa loja</span>
-              <strong>www.cncshop.com.br</strong>
-            </div>
-          </div>
-          <i class="fas fa-chevron-right btn-arrow" aria-hidden="true"></i>
-        </a>
+            <a href="tel:1632411144" class="btn">
+                <div style="display:flex; align-items:center;">
+                    <i class="fas fa-phone"></i>
+                    <div style="line-height:1.2">
+                        <span style="font-size:0.6rem; color:#aaa; display:block;">TELEFONE</span>
+                        <strong>(16) 3241-1144</strong>
+                    </div>
+                </div>
+            </a>
 
-        <a
-          href="https://maps.app.goo.gl/YourLink"
-          class="btn"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Abrir localização da empresa"
-        >
-          <div class="btn-content">
-            <div class="btn-icon">
-              <i class="fas fa-location-dot" aria-hidden="true"></i>
-            </div>
-            <div class="btn-text">
-              <span>Localização</span>
-              <strong>Nosso endereço</strong>
-            </div>
-          </div>
-          <i class="fas fa-chevron-right btn-arrow" aria-hidden="true"></i>
-        </a>
+            <a href="https://www.cncshop.com.br" target="_blank" class="btn">
+                <div style="display:flex; align-items:center;">
+                    <i class="fas fa-globe"></i>
+                    <strong>WWW.CNCSHOP.COM.BR</strong>
+                </div>
+            </a>
 
-        <a
-          href="mailto:vendas@cncshop.com.br"
-          class="btn"
-          aria-label="Enviar e-mail para vendas arroba cncshop ponto com ponto br"
-        >
-          <div class="btn-content">
-            <div class="btn-icon">
-              <i class="fas fa-envelope" aria-hidden="true"></i>
-            </div>
-            <div class="btn-text">
-              <span>Envie um e-mail</span>
-              <strong>vendas@cncshop.com.br</strong>
-            </div>
-          </div>
-          <i class="fas fa-chevron-right btn-arrow" aria-hidden="true"></i>
-        </a>
-      </nav>
+            <a href="https://maps.app.goo.gl/YourLink" target="_blank" class="btn">
+                <div style="display:flex; align-items:center;">
+                    <i class="fas fa-location-dot"></i>
+                    <strong>NOSSO ENDEREÇO</strong>
+                </div>
+            </a>
 
-      <footer class="footer">
-        <p class="footer-text">
-          <strong>Grupo Manutex CNC</strong> © 2026
-        </p>
-      </footer>
-    </section>
-  </main>
+            <a href="mailto:vendas@cncshop.com.br" class="btn">
+                <div style="display:flex; align-items:center;">
+                    <i class="fas fa-envelope"></i>
+                    <strong>E-MAIL</strong>
+                </div>
+            </a>
+
+            <p class="footer-text">Grupo Manutex CNC © 2026</p>
+        </nav>
+    </div>
+
 </body>
 </html>
