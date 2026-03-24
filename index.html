@@ -2,8 +2,8 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>CNCShop - Cartão Digital</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>CNCShop - Cartão Digital Interativo</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
@@ -20,16 +20,17 @@
         }
 
         body {
-            background-color: #f0f0f0;
+            background-color: #eee;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
+            min-height: calc(100vh - 40px); /* Compensa a parte inferior em celulares */
+            margin: 20px 0;
             position: relative;
             overflow-x: hidden;
         }
 
-        /* --- PLANO DE FUNDO (MOSAICO GIGANTE E INCLINADO) --- */
+        /* --- PLANO DE FUNDO (MOSAICO GIGANTE E INCLINADO COM 70% TRANSPARÊNCIA) --- */
         body::before {
             content: "";
             position: fixed;
@@ -37,16 +38,16 @@
             left: -150%;
             width: 400%;
             height: 400%;
-            background-image: url('logo.png');
+            background-image: url('Logo.png'); /* Certifique-se que o nome está correto no GitHub */
             background-repeat: repeat;
             /* TAMANHO DAS IMAGENS AUMENTADO */
-            background-size: 450px; 
+            background-size: 400px; 
             z-index: -1;
             
             /* INCLINAÇÃO */
             transform: rotate(-25deg);
             
-            /* TRANSPARÊNCIA DE 70% (0.3 visível) */
+            /* TRANSPARÊNCIA DE 70% (Exibe 30% da intensidade) */
             opacity: 0.3; 
             pointer-events: none;
         }
@@ -55,16 +56,17 @@
         .card-container {
             width: 100%;
             max-width: 480px;
-            min-height: 100vh;
+            min-height: auto; /* Permite que o cartão cresça e não corte */
             background-color: var(--bg-base);
             position: relative;
             display: flex;
             flex-direction: column;
             box-shadow: 0 0 60px rgba(0,0,0,0.2);
             overflow: hidden;
+            border-radius: 20px; /* Arredondamento suave no mobile */
         }
 
-        /* --- CABEÇALHO --- */
+        /* --- CABEÇALHO (Ajustado para mostrar mais) --- */
         .header-image {
             width: 100%;
             height: 25vh;
@@ -89,9 +91,9 @@
             text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
         }
 
-        /* --- LOGO PRINCIPAL --- */
+        /* --- LOGO PRINCIPAL (Descido para revelar o topo) --- */
         .logo-area {
-            margin-top: -50px;
+            margin-top: -5vh; /* Valor responsivo rebaixado */
             padding: 0 12%;
             z-index: 10;
         }
@@ -115,10 +117,12 @@
             text-align: center;
         }
 
-        /* --- BOTÕES --- */
+        /* --- BOTÕES RESPONSIVOS --- */
         .links-container {
-            padding: 0 10% 50px;
+            padding: 0 10% 40px; /* Garante espaço na parte inferior */
             flex-grow: 1;
+            display: flex;
+            flex-direction: column;
         }
 
         .btn {
@@ -131,7 +135,7 @@
             margin-bottom: 16px;
             padding: 20px 24px;
             border-radius: 100px;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             box-shadow: 0 8px 15px rgba(0,0,0,0.3);
         }
 
@@ -175,21 +179,21 @@
         .footer-text {
             font-size: 0.75rem;
             color: #bbb;
-            margin-top: 30px;
+            margin-top: auto; /* Empurra para o final da seção */
+            padding-top: 30px;
             text-align: center;
         }
 
-        /* AJUSTE PARA COMPUTADOR */
+        /* --- AJUSTES DESKTOP (Mosaico na Tela Toda) --- */
         @media (min-width: 768px) {
             .card-container {
                 border-radius: 30px;
                 min-height: auto;
-                height: 92vh;
-                margin: 20px 0;
+                height: 94vh; /* Altura máxima em desktops */
             }
             body::before {
-                background-size: 550px; /* Ainda maior no computador */
-                opacity: 0.3;
+                background-size: 450px; /* Ainda maior no desktop */
+                opacity: 0.25; /* Suaviza ainda mais no desktop */
             }
         }
     </style>
@@ -202,7 +206,7 @@
         </header>
 
         <section class="logo-area">
-            <img src="logo.png" alt="Grupo Manutex CNC Shop">
+            <img src="Logo.png" alt="Grupo Manutex CNC Shop">
         </section>
 
         <p class="instruction">Toque para interagir</p>
@@ -216,13 +220,14 @@
                         <strong>VENDAS WHATSAPP</strong>
                     </div>
                 </div>
+                <i class="fas fa-chevron-right" style="font-size: 0.8rem; opacity: 0.2;"></i>
             </a>
 
             <a href="tel:1632411144" class="btn">
                 <div class="btn-content">
                     <i class="fas fa-phone"></i>
                     <div class="btn-text">
-                        <span>Ligar agora</span>
+                        <span>Fixo</span>
                         <strong>(16) 3241-1144</strong>
                     </div>
                 </div>
@@ -232,13 +237,13 @@
                 <div class="btn-content">
                     <i class="fas fa-globe"></i>
                     <div class="btn-text">
-                        <span>Acesse nosso site</span>
+                        <span>Nossa Loja Virtual</span>
                         <strong>WWW.CNCSHOP.COM.BR</strong>
                     </div>
                 </div>
             </a>
 
-            <a href="https://maps.google.com/?q=CNCShop+Monte+Alto" target="_blank" class="btn">
+            <a href="http://googleusercontent.com/maps.google.com/5" target="_blank" class="btn">
                 <div class="btn-content">
                     <i class="fas fa-location-dot"></i>
                     <div class="btn-text">
