@@ -29,7 +29,7 @@
             overflow-x: hidden;
         }
 
-        /* --- PLANO DE FUNDO (MOSAICO GRANDE E INCLINADO) --- */
+        /* --- PLANO DE FUNDO (MOSAICO GIGANTE E INCLINADO) --- */
         body::before {
             content: "";
             position: fixed;
@@ -37,16 +37,16 @@
             left: -150%;
             width: 400%;
             height: 400%;
-            background-image: url('Logo.png');
+            background-image: url('logo.png');
             background-repeat: repeat;
-            /* IMAGENS BEM MAIORES */
-            background-size: 380px; 
+            /* TAMANHO DAS IMAGENS AUMENTADO */
+            background-size: 450px; 
             z-index: -1;
             
-            /* INCLINAÇÃO DINÂMICA */
+            /* INCLINAÇÃO */
             transform: rotate(-25deg);
             
-            /* TRANSPARÊNCIA DE 70% (Exibe 30% da intensidade) */
+            /* TRANSPARÊNCIA DE 70% (0.3 visível) */
             opacity: 0.3; 
             pointer-events: none;
         }
@@ -115,7 +115,7 @@
             text-align: center;
         }
 
-        /* --- BOTÕES RESPONSIVOS --- */
+        /* --- BOTÕES --- */
         .links-container {
             padding: 0 10% 50px;
             flex-grow: 1;
@@ -131,7 +131,7 @@
             margin-bottom: 16px;
             padding: 20px 24px;
             border-radius: 100px;
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: all 0.3s ease;
             box-shadow: 0 8px 15px rgba(0,0,0,0.3);
         }
 
@@ -177,20 +177,19 @@
             color: #bbb;
             margin-top: 30px;
             text-align: center;
-            font-weight: 500;
         }
 
-        /* --- AJUSTES DESKTOP --- */
+        /* AJUSTE PARA COMPUTADOR */
         @media (min-width: 768px) {
             .card-container {
                 border-radius: 30px;
                 min-height: auto;
-                height: 94vh;
+                height: 92vh;
                 margin: 20px 0;
             }
             body::before {
-                opacity: 0.25; /* Um pouco mais visível no desktop */
-                background-size: 420px; /* Ainda maior no desktop */
+                background-size: 550px; /* Ainda maior no computador */
+                opacity: 0.3;
             }
         }
     </style>
@@ -203,7 +202,7 @@
         </header>
 
         <section class="logo-area">
-            <img src="Logo.png" alt="Grupo Manutex CNC Shop">
+            <img src="logo.png" alt="Grupo Manutex CNC Shop">
         </section>
 
         <p class="instruction">Toque para interagir</p>
@@ -217,14 +216,13 @@
                         <strong>VENDAS WHATSAPP</strong>
                     </div>
                 </div>
-                <i class="fas fa-chevron-right" style="font-size: 0.8rem; opacity: 0.2;"></i>
             </a>
 
             <a href="tel:1632411144" class="btn">
                 <div class="btn-content">
                     <i class="fas fa-phone"></i>
                     <div class="btn-text">
-                        <span>Ligar para nós</span>
+                        <span>Ligar agora</span>
                         <strong>(16) 3241-1144</strong>
                     </div>
                 </div>
@@ -240,7 +238,7 @@
                 </div>
             </a>
 
-            <a href="https://maps.google.com/?q=CNCShop+Grupo+Manutex" target="_blank" class="btn">
+            <a href="https://maps.google.com/?q=CNCShop+Monte+Alto" target="_blank" class="btn">
                 <div class="btn-content">
                     <i class="fas fa-location-dot"></i>
                     <div class="btn-text">
