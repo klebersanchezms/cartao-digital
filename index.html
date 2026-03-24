@@ -3,29 +3,40 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>CNCShop - Cartão Digital</title>
-  <meta name="description" content="Cartão digital da CNCShop - Parts for CNC" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <title>CNCShop - Cartão Digital Premium</title>
+  <meta name="description" content="Cartão digital premium da CNCShop - Parts for CNC" />
+  <meta name="theme-color" content="#111111" />
+
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+  />
 
   <style>
     :root {
       --vermelho: #e31e24;
       --vermelho-escuro: #b8141a;
-      --preto: #171717;
-      --preto-2: #262626;
+      --preto: #131313;
+      --preto-2: #1e1e1e;
+      --preto-3: #262626;
+      --branco: #ffffff;
       --fundo: #f3f4f6;
-      --card: rgba(255, 255, 255, 0.97);
+      --card: rgba(255, 255, 255, 0.96);
       --texto: #1f2937;
-      --texto-suave: #7b8088;
-      --borda: rgba(255, 255, 255, 0.4);
-      --sombra-card: 0 18px 45px rgba(0, 0, 0, 0.16);
-      --sombra-btn: 0 10px 24px rgba(0, 0, 0, 0.18);
-      --sombra-btn-hover: 0 14px 28px rgba(0, 0, 0, 0.24);
-      --radius-xl: 28px;
-      --radius-lg: 20px;
+      --texto-suave: #6b7280;
+      --borda: rgba(255, 255, 255, 0.45);
+      --shadow-card: 0 24px 60px rgba(0, 0, 0, 0.18);
+      --shadow-soft: 0 12px 30px rgba(0, 0, 0, 0.10);
+      --shadow-btn: 0 10px 24px rgba(0, 0, 0, 0.18);
+      --shadow-btn-hover: 0 16px 34px rgba(0, 0, 0, 0.24);
+      --radius-xl: 30px;
+      --radius-lg: 22px;
+      --radius-md: 18px;
+      --radius-sm: 14px;
       --radius-pill: 999px;
-      --transicao: 0.25s ease;
-      --max-width: 460px;
+      --transition: 0.25s ease;
+      --max-width: 470px;
     }
 
     * {
@@ -43,13 +54,14 @@
       min-height: 100vh;
       background:
         radial-gradient(circle at top, rgba(227, 30, 36, 0.08), transparent 35%),
-        var(--fundo);
+        linear-gradient(180deg, #f9fafb 0%, #eef1f4 100%);
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 24px 14px;
+      padding: 26px 14px;
       overflow-x: hidden;
       position: relative;
+      color: var(--texto);
     }
 
     body::before {
@@ -60,7 +72,7 @@
       background-repeat: repeat;
       background-size: 340px;
       transform: rotate(-24deg);
-      opacity: 0.05;
+      opacity: 0.045;
       pointer-events: none;
       z-index: 0;
     }
@@ -69,10 +81,10 @@
       width: 100%;
       max-width: var(--max-width);
       background: var(--card);
-      backdrop-filter: blur(8px);
+      backdrop-filter: blur(10px);
       border-radius: var(--radius-xl);
       overflow: hidden;
-      box-shadow: var(--sombra-card);
+      box-shadow: var(--shadow-card);
       border: 1px solid var(--borda);
       position: relative;
       z-index: 1;
@@ -80,15 +92,15 @@
 
     .header-image {
       position: relative;
-      min-height: 230px;
-      padding: 34px 22px 90px;
+      min-height: 245px;
+      padding: 34px 22px 94px;
       display: flex;
       align-items: flex-start;
       justify-content: center;
       text-align: center;
       background:
-        linear-gradient(rgba(0, 0, 0, 0.62), rgba(0, 0, 0, 0.25)),
-        url("https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=1200")
+        linear-gradient(rgba(0, 0, 0, 0.60), rgba(0, 0, 0, 0.28)),
+        url("https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=1400")
         center/cover no-repeat;
     }
 
@@ -98,7 +110,7 @@
       left: 0;
       right: 0;
       bottom: -1px;
-      height: 70px;
+      height: 72px;
       background: var(--card);
       clip-path: ellipse(70% 100% at 50% 100%);
     }
@@ -110,7 +122,9 @@
     }
 
     .badge {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
       margin-bottom: 12px;
       padding: 8px 14px;
       background: rgba(255, 255, 255, 0.16);
@@ -126,39 +140,46 @@
 
     .header-image h1 {
       color: #fff;
-      font-size: 1.22rem;
+      font-size: 1.25rem;
       line-height: 1.35;
       font-weight: 800;
       letter-spacing: 0.04em;
       text-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+      margin-bottom: 8px;
+    }
+
+    .header-image p {
+      color: rgba(255, 255, 255, 0.82);
+      font-size: 0.92rem;
+      line-height: 1.5;
     }
 
     .logo-area {
       position: relative;
       z-index: 2;
-      margin-top: -58px;
+      margin-top: -60px;
       padding: 0 22px;
     }
 
     .logo-box {
       background: linear-gradient(135deg, #ffffff, #f8f8f8);
       border: 1px solid rgba(0, 0, 0, 0.05);
-      border-radius: 20px;
-      padding: 14px 16px;
+      border-radius: 22px;
+      padding: 16px 18px;
       display: flex;
       justify-content: center;
       align-items: center;
-      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.1);
-      min-height: 110px;
+      box-shadow: var(--shadow-soft);
+      min-height: 112px;
     }
 
     .logo-box img {
       width: 100%;
       height: auto;
-      max-height: 90px;
+      max-height: 92px;
       object-fit: contain;
       display: block;
-      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));
+      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.15));
     }
 
     .content {
@@ -175,10 +196,48 @@
       margin-bottom: 18px;
     }
 
+    .quick-actions {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .mini-btn {
+      border: none;
+      cursor: pointer;
+      background: linear-gradient(135deg, #ffffff, #f4f4f4);
+      color: var(--texto);
+      border-radius: 16px;
+      padding: 14px 10px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+      transition: transform var(--transition), box-shadow var(--transition);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-align: center;
+      min-height: 84px;
+    }
+
+    .mini-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 24px rgba(0, 0, 0, 0.12);
+    }
+
+    .mini-btn i {
+      font-size: 1.2rem;
+      color: var(--vermelho);
+    }
+
     .links-container {
       display: flex;
       flex-direction: column;
       gap: 12px;
+      margin-bottom: 18px;
     }
 
     .btn {
@@ -188,20 +247,20 @@
       gap: 12px;
       text-decoration: none;
       color: #fff;
-      background: linear-gradient(135deg, var(--preto), var(--preto-2));
+      background: linear-gradient(135deg, var(--preto), var(--preto-3));
       padding: 16px 18px;
       border-radius: var(--radius-pill);
-      box-shadow: var(--sombra-btn);
+      box-shadow: var(--shadow-btn);
       transition:
-        transform var(--transicao),
-        box-shadow var(--transicao),
-        background var(--transicao);
+        transform var(--transition),
+        box-shadow var(--transition),
+        background var(--transition);
       border: 1px solid rgba(255, 255, 255, 0.05);
     }
 
     .btn:hover {
       transform: translateY(-2px);
-      box-shadow: var(--sombra-btn-hover);
+      box-shadow: var(--shadow-btn-hover);
       background: linear-gradient(135deg, #111111, #2b2b2b);
     }
 
@@ -209,7 +268,8 @@
       transform: scale(0.985);
     }
 
-    .btn:focus-visible {
+    .btn:focus-visible,
+    .mini-btn:focus-visible {
       outline: 3px solid rgba(227, 30, 36, 0.25);
       outline-offset: 2px;
     }
@@ -261,20 +321,34 @@
       flex-shrink: 0;
     }
 
-    .fa-whatsapp { color: #25d366; }
-    .fa-phone { color: #4aa3ff; }
-    .fa-globe { color: var(--vermelho); }
-    .fa-location-dot { color: #f1c40f; }
-    .fa-envelope { color: #ffffff; }
+    .info-card {
+      background: linear-gradient(135deg, #fff, #f8f9fb);
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      border-radius: var(--radius-lg);
+      padding: 16px;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.06);
+    }
+
+    .info-card h2 {
+      font-size: 0.95rem;
+      margin-bottom: 8px;
+      color: var(--texto);
+    }
+
+    .info-card p {
+      font-size: 0.88rem;
+      line-height: 1.6;
+      color: var(--texto-suave);
+    }
 
     .footer {
       margin-top: 18px;
+      text-align: center;
     }
 
     .footer-text {
       font-size: 0.78rem;
       color: #8a8a8a;
-      text-align: center;
       line-height: 1.5;
     }
 
@@ -282,14 +356,49 @@
       color: var(--vermelho);
     }
 
+    .fa-whatsapp { color: #25d366; }
+    .fa-phone { color: #4aa3ff; }
+    .fa-globe { color: var(--vermelho); }
+    .fa-location-dot { color: #f1c40f; }
+    .fa-envelope { color: #ffffff; }
+    .fa-route { color: #2ecc71; }
+    .fa-address-card { color: #8e44ad; }
+    .fa-share-nodes { color: #ff7a00; }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 22px;
+      transform: translateX(-50%) translateY(20px);
+      background: rgba(17, 17, 17, 0.95);
+      color: #fff;
+      padding: 12px 16px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      box-shadow: 0 12px 24px rgba(0,0,0,0.2);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .25s ease, transform .25s ease;
+      z-index: 50;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
     @media (max-width: 480px) {
       .header-image {
-        min-height: 215px;
-        padding: 28px 18px 82px;
+        min-height: 225px;
+        padding: 28px 18px 84px;
       }
 
       .header-image h1 {
-        font-size: 1.08rem;
+        font-size: 1.10rem;
+      }
+
+      .header-image p {
+        font-size: 0.86rem;
       }
 
       .logo-area {
@@ -308,6 +417,16 @@
 
       .content {
         padding: 20px 18px 24px;
+      }
+
+      .quick-actions {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+      }
+
+      .mini-btn {
+        padding: 12px 8px;
+        font-size: 0.72rem;
       }
 
       .btn {
@@ -331,11 +450,15 @@
   </style>
 </head>
 <body>
-  <main class="card-container" aria-label="Cartão digital CNCShop">
+  <main class="card-container" aria-label="Cartão digital premium CNCShop">
     <header class="header-image">
       <div class="header-content">
-        <span class="badge">CNCShop</span>
+        <span class="badge">
+          <i class="fas fa-gear" aria-hidden="true"></i>
+          CNCShop
+        </span>
         <h1>Especialista em Peças para CNC</h1>
+        <p>Atendimento rápido, peças especializadas e suporte comercial para sua operação.</p>
       </div>
     </header>
 
@@ -347,6 +470,30 @@
 
     <section class="content">
       <p class="instruction">Toque para interagir</p>
+
+      <div class="quick-actions">
+        <button class="mini-btn" id="saveContactBtn" type="button" aria-label="Salvar contato">
+          <i class="fas fa-address-card" aria-hidden="true"></i>
+          <span>Salvar contato</span>
+        </button>
+
+        <button class="mini-btn" id="shareBtn" type="button" aria-label="Compartilhar cartão">
+          <i class="fas fa-share-nodes" aria-hidden="true"></i>
+          <span>Compartilhar</span>
+        </button>
+
+        <a
+          class="mini-btn"
+          href="https://www.google.com/maps/dir/?api=1&destination=-21.259583,-48.466944"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Traçar rota"
+          style="text-decoration:none;"
+        >
+          <i class="fas fa-route" aria-hidden="true"></i>
+          <span>Traçar rota</span>
+        </a>
+      </div>
 
       <nav class="links-container" aria-label="Links de contato">
         <a
@@ -405,7 +552,7 @@
         </a>
 
         <a
-          href="https://www.google.com/maps?q=-21.259594,-48.466953"
+          href="https://www.google.com/maps?q=-21.259583,-48.466944"
           class="btn"
           target="_blank"
           rel="noopener noreferrer"
@@ -417,7 +564,7 @@
             </div>
             <div class="btn-text">
               <span>Localização</span>
-              <strong>Nosso endereço</strong>
+              <strong>CNC Shop Parts For CNC Ltda</strong>
             </div>
           </div>
           <i class="fas fa-chevron-right btn-arrow" aria-hidden="true"></i>
@@ -441,6 +588,14 @@
         </a>
       </nav>
 
+      <div class="info-card">
+        <h2>Nosso endereço</h2>
+        <p>
+          CNC Shop Parts For CNC Ltda<br>
+          Localização configurada com as coordenadas 21°15'34.5"S 48°28'01.0"W.
+        </p>
+      </div>
+
       <footer class="footer">
         <p class="footer-text">
           <strong>Grupo Manutex CNC</strong> © 2026
@@ -448,5 +603,69 @@
       </footer>
     </section>
   </main>
+
+  <div class="toast" id="toast">Ação concluída.</div>
+
+  <script>
+    const toast = document.getElementById("toast");
+
+    function showToast(message) {
+      toast.textContent = message;
+      toast.classList.add("show");
+      clearTimeout(window.__toastTimer);
+      window.__toastTimer = setTimeout(() => {
+        toast.classList.remove("show");
+      }, 2200);
+    }
+
+    document.getElementById("saveContactBtn").addEventListener("click", () => {
+      const vcard = `BEGIN:VCARD
+VERSION:3.0
+FN:CNCShop
+ORG:CNC Shop Parts For CNC Ltda
+TEL;TYPE=WORK,VOICE:+55 16 3241-1144
+EMAIL:vendas@cncshop.com.br
+URL:https://www.cncshop.com.br
+ADR:;;CNC Shop Parts For CNC Ltda;;;;Brasil
+NOTE:Cartão digital CNCShop
+END:VCARD`;
+
+      const blob = new Blob([vcard], { type: "text/vcard;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = "cncshop-contato.vcf";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+
+      showToast("Contato baixado com sucesso.");
+    });
+
+    document.getElementById("shareBtn").addEventListener("click", async () => {
+      const shareData = {
+        title: "CNCShop - Cartão Digital",
+        text: "Confira o cartão digital da CNCShop.",
+        url: window.location.href
+      };
+
+      if (navigator.share) {
+        try {
+          await navigator.share(shareData);
+          showToast("Cartão compartilhado.");
+        } catch (error) {
+          showToast("Compartilhamento cancelado.");
+        }
+      } else {
+        try {
+          await navigator.clipboard.writeText(window.location.href);
+          showToast("Link copiado para a área de transferência.");
+        } catch (error) {
+          showToast("Não foi possível copiar o link.");
+        }
+      }
+    });
+  </script>
 </body>
 </html>
